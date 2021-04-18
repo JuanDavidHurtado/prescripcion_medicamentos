@@ -1,37 +1,40 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h3 class="text-center">Add User</h3>
+            <h3 class="text-center">Agregar Usuario</h3>
             <form @submit.prevent="onFormSubmit">
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Nombre</label>
                     <input type="text" class="form-control" v-model="user.name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>Correo eléctronico</label>
                     <input type="email" class="form-control" v-model="user.email" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Phone</label>
+                    <label>Teléfono</label>
                     <input type="text" class="form-control" v-model="user.phone" required>
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block">Add User</button>
+                    <button class="btn btn-primary btn-block">Guardar</button>
                 </div>
             </form>
+
         </div>
     </div>
 </template>
 
 <script>
-    //import {db} from './firebaseDb';
+    
+    //import { db } from './firebaseDb.js';
 
-    import firebase from 'firebase'
+    import firebase from 'firebase';
 
-const firebaseConfig = {
+
+    const firebaseConfig = {
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -45,9 +48,14 @@ const firebaseConfig = {
     measurementId: "G-L7KJ7X8NM7"
 }
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export const db = firebaseApp.firestore();
+    export const db = firebaseApp.firestore();
+   
+
+  
+
+
 
     export default {
         data() {
