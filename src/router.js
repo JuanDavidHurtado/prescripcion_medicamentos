@@ -1,9 +1,12 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
-import Home from "./views/VPlantilla/VBarraMenu.vue";
-import About from "./views/VPlantilla/VFooter.vue";
+
+
+import Home from "./views/VHome/home.vue";
 import agregar_usuario from "./views/VUsuario/VAgregar.vue";
-    
+import listar_usuario from "./views/VUsuario/VListar.vue";
+import editar_usuario from "./views/VUsuario/VEditar.vue";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,14 +16,19 @@ const routes = [
     component: Home
   },
   {
-    path: "/about",
-    name: "about",
-    component: About
-  },
-  {
     path: "/usuario",
     name: "usuario",
     component: agregar_usuario
+  },
+  {
+    path: "/listar",
+    name: "listar",
+    component: listar_usuario
+  },
+  {
+    path: '/editar/:id',
+    name: 'editar',
+    component:editar_usuario
   }
 ];
 
