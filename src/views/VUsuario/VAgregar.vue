@@ -5,17 +5,22 @@
             <form @submit.prevent="onFormSubmit">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" v-model="user.name" required>
+                    <input type="text" class="form-control" v-model="user.usu_nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Correo eléctronico</label>
-                    <input type="email" class="form-control" v-model="user.email" required>
+                    <label>Login</label>
+                    <input type="text" class="form-control" v-model="user.usu_login" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Teléfono</label>
-                    <input type="text" class="form-control" v-model="user.phone" required>
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control" v-model="user.usu_pwd" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Rol</label>
+                    <input type="text" class="form-control" v-model="user.usu_rol" required>
                 </div>
 
                 <div class="form-group">
@@ -29,34 +34,9 @@
 
 <script>
     
-    //import { db } from './firebaseDb.js';
+    import {db} from '../../firebaseDb';
 
-    import firebase from 'firebase';
-
-
-    const firebaseConfig = {
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    
-    apiKey: "AIzaSyAEBMx_ABx7UIKDWZPNiyZqUDTbIFU1wIQ",
-    authDomain: "pre-med-ffbb1.firebaseapp.com",
-    projectId: "pre-med-ffbb1",
-    storageBucket: "pre-med-ffbb1.appspot.com",
-    messagingSenderId: "887211409886",
-    appId: "1:887211409886:web:7111432aa3ab0e7f409d4f",
-    measurementId: "G-L7KJ7X8NM7"
-}
-
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-    export const db = firebaseApp.firestore();
    
-
-  
-
-
-
     export default {
         data() {
             return {
@@ -67,11 +47,12 @@
         methods: {
             onFormSubmit(event) {
                 event.preventDefault()
-                db.collection('users').add(this.user).then(() => {
-                    alert("User successfully created!");
-                    this.user.name = ''
-                    this.user.email = ''
-                    this.user.phone = ''
+                db.collection('usuario').add(this.user).then(() => {
+                    alert("Usuario creado correctamente!");
+                    this.user.usu_nombre = ''
+                    this.user.usu_login = ''
+                    this.user.usu_pwd = ''
+                    this.user.usu_rol = ''
                 }).catch((error) => {
                     console.log(error);
                 });
