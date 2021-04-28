@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -18,9 +18,9 @@
                         <td>{{ user.usu_pwd }}</td>
                         <td>{{ user.usu_rol }}</td>
                         <td>
-                            <router-link :to="{name: 'editar', params: {id: user.key}}" class="btn btn-primary">Edit
+                            <router-link :to="{name: 'editar', params: {id: user.key}}" class="btn btn-primary">Editar
                             </router-link>
-                            <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Delete</button>
+                            <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
