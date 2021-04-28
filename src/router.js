@@ -8,6 +8,12 @@ import home from "./views/VHome/home.vue";
 import agregar_usuario from "./views/VUsuario/VAgregar.vue";
 import listar_usuario from "./views/VUsuario/VListar.vue";
 import editar_usuario from "./views/VUsuario/VEditar.vue";
+import listar_medicamento from "./views/VMedicamento/VListar.vue";
+import editar_medicamento from "./views/VMedicamento/VEditar.vue";
+import listar_farmacia from "./views/VFarmacia/VListar.vue";
+import editar_farmacia from "./views/VFarmacia/VEditar.vue";
+import listar_diagnostico from "./views/VDiagnostico/VListar.vue";
+import editar_diagnostico from "./views/VDiagnostico/VEditar.vue";
 
 Vue.use(VueRouter)
 
@@ -41,7 +47,39 @@ const router = new VueRouter ({
     path: '/editar/:id',
     name: 'editar',
     component:editar_usuario
+  },
+  {
+    path: "/lis_med",
+    name: "lis_med",
+    component: listar_medicamento
+  },
+  {
+    path: '/edi_med/:id',
+    name: 'edi_med',
+    component:editar_medicamento
+  },
+  {
+    path: "/lis_far",
+    name: "lis_far",
+    component: listar_farmacia
+  },
+  {
+    path: '/edi_far/:id',
+    name: 'edi_far',
+    component:editar_farmacia
+  },
+  {
+    path: "/lis_dia",
+    name: "lis_dia",
+    component: listar_diagnostico
+  },
+  {
+    path: '/edi_dia/:id',
+    name: 'edi_dia',
+    component:editar_diagnostico
   }
+
+  
 ]
 });
 
