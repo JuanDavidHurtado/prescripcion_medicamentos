@@ -14,6 +14,9 @@ import listar_farmacia from "./views/VFarmacia/VListar.vue";
 import editar_farmacia from "./views/VFarmacia/VEditar.vue";
 import listar_diagnostico from "./views/VDiagnostico/VListar.vue";
 import editar_diagnostico from "./views/VDiagnostico/VEditar.vue";
+import listar_entidad from "./views/VEntidad/VListar.vue";
+import editar_entidad from "./views/VEntidad/VEditar.vue";
+
 
 Vue.use(VueRouter)
 
@@ -77,6 +80,16 @@ const router = new VueRouter ({
     path: '/edi_dia/:id',
     name: 'edi_dia',
     component:editar_diagnostico
+  },
+  {
+    path: "/lis_ent",
+    name: "lis_ent",
+    component: listar_entidad
+  },
+  {
+    path: '/edi_ent/:id',
+    name: 'edi_ent',
+    component:editar_entidad
   }
 
   

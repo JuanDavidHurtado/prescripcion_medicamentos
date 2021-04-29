@@ -24,10 +24,19 @@
           Configración
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_ent">Entidad</router-link></a>
+
+          <div class="dropdown-divider"></div>
+
           <a class="dropdown-item"><router-link class="nav-link" to="/lis_far">Farmacia</router-link></a>
+
           <div class="dropdown-divider"></div>
+
           <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_med">Medicamento</router-link></a>
+
           <div class="dropdown-divider"></div>
+          
           <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_dia">Diagnostico</router-link></a>
         </div>
       </li>      
