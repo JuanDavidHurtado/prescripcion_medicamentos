@@ -1,4 +1,5 @@
 <template>
+<div v-if="user">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <router-link class="nav-link pr-3" to="/home">Prescripcion medicamentos</router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,9 +14,9 @@
           Usuarios
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item"><router-link class="nav-link pr-3" to="/usuario">Agregar usuario</router-link></a>
+          <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_pac">Paciente</router-link></a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item"><router-link class="nav-link" to="/listar">Listar usuario</router-link></a>
+          <a class="dropdown-item"><router-link class="nav-link" to="">Usuario sistema</router-link></a>
         </div>
       </li>
 
@@ -36,18 +37,31 @@
           <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_med">Medicamento</router-link></a>
 
           <div class="dropdown-divider"></div>
-          
-          <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_dia">Diagnostico</router-link></a>
-        </div>
-      </li>      
-    </ul>
-    <form class="form-inline" >
-    <button class="btn btn-outline-success my-2 my-sm-0" @click.prevent = "logout">
-    {{ user.email }} </button>
-  </form>
 
+          <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_dia">Diagnostico</router-link></a>
+
+        </div>
+      </li> 
+
+      <li class="nav-item">
+            <router-link class="nav-link pr-3" to="/agr_pre">Prescripción</router-link>
+      </li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          usuario: {{user.email}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item">Mi Perfil</a>
+          <a class="dropdown-item" @click.prevent = "logout">Cerrar Sesión</a>
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>
+</div>
 </template>
 
 

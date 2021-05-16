@@ -1,34 +1,58 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <h3 class="text-center">Actualizar usuario</h3>
-            <form @submit.prevent="onUpdateForm">
-                <div class="form-group">
-                    <label>Nombre</label>
+
+<div class="container">
+    <h2>{{ titulo }}</h2><hr>
+       
+        <form @submit.prevent="onUpdateForm">    
+
+        <div class="form-group">
+                    <label>Código</label>
                     <input type="text" class="form-control" v-model="med.medCodigo" required>
-                </div>
+        </div>  
 
-                <div class="form-group">
-                    <label>Login</label>
-                    <input type="text" class="form-control" v-model="med.medNombre" required>
-                </div>
+        <div class="form-row">
+    
+            <div class="form-group col-md-4">
 
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="text" class="form-control" v-model="med.medConcentracion" required>
-                </div>
+            <label>Nombre:</label>
+            <input type="text" class="form-control" v-model="med.medNombre" required>
+                
+                    
+            </div>
 
-                <div class="form-group">
-                    <label>Rol</label>
-                    <input type="text" class="form-control" v-model="med.medPresentacion" required>
-                </div>
+            <div class="form-group col-md-4">
 
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block">Actalizar Usuario</button>
-                </div>
-            </form>
+            <label>Concentración:</label>
+ 
+            <input type="text" class="form-control" v-model="med.medConcentracion" required>
+                    
+            </div>
+
+            <div class="form-group col-md-4">
+
+            <label>Presentación</label>
+ 
+            <input type="text" class="form-control" v-model="med.medPresentacion" required>
+                    
+            </div>
+
         </div>
-    </div>
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button class="btn btn-outline-primary btn-block">Actalizar Farmacia</button>
+            </div>
+
+            <div class="form-group col-md-6">
+              
+                <router-link class="btn btn-outline-success btn-block" to="/lis_med">Regresar</router-link>
+                
+            </div>
+        </div>
+
+    </form>
+</div>
 </template>
 
 <script>
@@ -38,6 +62,7 @@
     export default {
         data() {
             return {
+                titulo: 'Actualizar Medicamento',
                 med: {
                 }
             }
