@@ -3,13 +3,13 @@
         <h2>{{ titulo }}</h2>
             <hr>
 
-<button type="button" class="btn btn-primary" @click="toggleModal">Agregar Entidad</button>
+<button type="button" class="btn btn-outline-primary" @click="toggleModal">Agregar Entidad</button>
 
     <div ref="modal" class="modal fade" :class="{show, 'd-block': active}" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Agregar Medicamento</h5>
+            <h5 class="modal-title">Agregar Entidad</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="toggleModal">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -78,9 +78,9 @@
                         <td>{{ e.entCorreo }}</td>
                         <td>{{ e.entRepLegal }}</td>
                         <td>
-                            <router-link :to="{name: 'edi_ent', params: {id: e.key}}" class="btn btn-primary">Editar
+                            <router-link :to="{name: 'edi_ent', params: {id: e.key}}" class="btn btn-outline-primary">Editar
                             </router-link>
-                            <button @click.prevent="deleteEntidad(e.key)" class="btn btn-danger">Eliminar</button>
+                            <button @click.prevent="deleteEntidad(e.key)" class="btn btn-outline-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>

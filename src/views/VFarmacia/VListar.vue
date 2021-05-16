@@ -4,7 +4,7 @@
 <hr>
 
 
-<button type="button" class="btn btn-primary" @click="toggleModal">Agregar Farmacia</button>
+<button type="button" class="btn btn-outline-primary" @click="toggleModal">Agregar Farmacia</button>
 
     <div ref="modal" class="modal fade" :class="{show, 'd-block': active}" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -79,9 +79,9 @@
                         <td>{{ f.farDepartamento }}</td>
                         <td>{{ f.farMunicipio }}</td>
                         <td>
-                            <router-link :to="{name: 'edi_far', params: {id: f.key}}" class="btn btn-primary">Editar
+                            <router-link :to="{name: 'edi_far', params: {id: f.key}}" class="btn btn-outline-primary">Editar
                             </router-link>
-                            <button @click.prevent="deleteFarmacia(f.key)" class="btn btn-danger">Eliminar</button>
+                            <button @click.prevent="deleteFarmacia(f.key)" class="btn btn-outline-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>

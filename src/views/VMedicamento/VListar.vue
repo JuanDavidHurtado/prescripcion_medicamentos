@@ -3,7 +3,7 @@
         <h2>{{ titulo }}</h2>
             <hr>
 
-<button type="button" class="btn btn-primary" @click="toggleModal">Agregar Medicamento</button>
+<button type="button" class="btn btn-outline-primary" @click="toggleModal">Agregar Medicamento</button>
 
     <div ref="modal" class="modal fade" :class="{show, 'd-block': active}" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -31,7 +31,8 @@
                     <tr>
                         <td>Nombre:</td>
                         <td>
-                            <input class="form-control" type="text" required="required" placeholder="Digite Nombre" v-model="medi.medNombre"/>
+                            <input class="form-control" type="text" required="required" placeholder="Digite Nombre"
+                             v-model="medi.medNombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -78,9 +79,9 @@
                         <td>{{ m.medConcentracion }}</td>
                         <td>{{ m.medPresentacion }}</td>
                         <td>
-                            <router-link :to="{name: 'edi_med', params: {id: m.key}}" class="btn btn-primary">Editar
+                            <router-link :to="{name: 'edi_med', params: {id: m.key}}" class="btn btn-outline-primary">Editar
                             </router-link>
-                            <button @click.prevent="deleteMedicamento(m.key)" class="btn btn-danger">Eliminar</button>
+                            <button @click.prevent="deleteMedicamento(m.key)" class="btn btn-outline-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>

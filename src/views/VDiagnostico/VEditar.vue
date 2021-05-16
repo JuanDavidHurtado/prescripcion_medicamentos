@@ -1,23 +1,43 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <h3 class="text-center">Actualizar Diagnostico</h3>
-            <form @submit.prevent="onUpdateForm">
-                <div class="form-group">
-                    <label>Codigo</label>
-                    <input type="text" class="form-control" v-model="Diag.diaCodigo" required>
-                </div>
+<div class="container">
+    <h2>{{ titulo }}</h2><hr>
+       
+        <form @submit.prevent="onUpdateForm">      
 
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" class="form-control" v-model="Diag.diaNombre" required>
-                </div>
+        <div class="form-row">
+    
+            <div class="form-group col-md-6">
 
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block">Actalizar Diagnostico</button>
-                </div>
-            </form>
+            <label>Codigo:</label>
+            <input type="text" class="form-control" v-model="Diag.diaCodigo" required>
+                
+                    
+            </div>
+
+            <div class="form-group col-md-6">
+
+            <label>Nombre:</label>
+ 
+            <input type="text" class="form-control" v-model="Diag.diaNombre" required>
+                    
+            </div>
+
         </div>
+        <br>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button class="btn btn-outline-primary btn-block">Actalizar Diagnostico</button>
+            </div>
+
+            <div class="form-group col-md-6">
+              
+                <router-link class="btn btn-outline-success btn-block" to="/lis_dia">Regresar</router-link>
+                
+            </div>
+        </div>
+    </form>
+        
     </div>
 </template>
 
@@ -28,6 +48,7 @@
     export default {
         data() {
             return {
+                titulo: 'Actualizar Diagnostico',
                 Diag: {
                 }
             }

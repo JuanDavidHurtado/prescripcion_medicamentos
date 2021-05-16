@@ -3,7 +3,7 @@
         <h2>{{ titulo }}</h2>
             <hr>
 
-<button type="button" class="btn btn-primary" @click="toggleModal">Agregar Diagnostico</button>
+<button type="button" class="btn btn-outline-primary" @click="toggleModal">Agregar Diagnostico</button>
 
     <div ref="modal" class="modal fade" :class="{show, 'd-block': active}" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -62,9 +62,9 @@
                         <td>{{ d.diaCodigo }}</td>
                         <td>{{ d.diaNombre }}</td>
                         <td>
-                            <router-link :to="{name: 'edi_dia', params: {id: d.key}}" class="btn btn-primary">Editar
+                            <router-link :to="{name: 'edi_dia', params: {id: d.key}}" class="btn btn-outline-primary">Editar
                             </router-link>
-                            <button @click.prevent="deleteDiagnostico(d.key)" class="btn btn-danger">Eliminar</button>
+                            <button @click.prevent="deleteDiagnostico(d.key)" class="btn btn-outline-danger">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
