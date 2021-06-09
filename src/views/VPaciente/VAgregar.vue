@@ -26,7 +26,7 @@
 
             <label>Tipo de Documento:</label>
 
-            <select class="form-control" v-model="selec"> 
+            <select class="form-control" v-model="selec" required> 
                     <option selected disabled value="null">---Seleccione Opcion---</option>
                     <option>Cédula de Ciudadanía</option>
                     <option>Tarjeta de Identidad</option>
@@ -105,7 +105,7 @@
 <script>
     
     import {db} from '../../firebaseDb';
-
+    
     export default {
         data() {
             return {
@@ -116,7 +116,8 @@
             }
         },
         methods: {
-            agregar() {           
+            agregar() {     
+
                     db.collection("persona").add({
                         perNombre:this.pac.perNombre,
                         perApellido:this.pac.perApellido,
@@ -127,7 +128,7 @@
                         perCorreo:this.pac.perCorreo,
                         perDepartamento:this.pac.perDepartamento,
                         perMunicipio:this.pac.perMunicipio,
-                        tipoRol:'paciente'
+                        tipoRol:this.paciente[0]
                                         
                     })
                     .then(() => {
@@ -147,6 +148,25 @@
                     });
             }
         },
+        
+        created() { 
+
+            db.collection("rol").where("rolNombre", "==", "paciente")
+            .get()
+            .then((querySnapshot) => {
+                this.paciente = [];
+                 querySnapshot.forEach((doc) => {
+
+                      this.paciente.push({
+                        key: doc.id,
+                        rolNombre: doc.data().rolNombre
+                    })     
+                });
+            })
+            .catch((error) => {
+                 console.log("Error getting documents: ", error);
+            });
+        }  
     }
 </script>
 

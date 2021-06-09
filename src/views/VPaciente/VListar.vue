@@ -52,12 +52,11 @@
             return {
                 titulo: 'Lista Pacientes',
                 pac: [],
-                medi: {
-                }
+                
             }
         },
         created() {
-             db.collection("persona").where("tipoRol", "==", "paciente").onSnapshot((snapshotChange) => {
+             db.collection("persona").where("tipoRol.rolNombre", "==", "paciente").onSnapshot((snapshotChange) => {
                 this.pac = [];
                 snapshotChange.forEach((doc) => {
                     this.pac.push({

@@ -16,7 +16,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_pac">Paciente</router-link></a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item"><router-link class="nav-link" to="">Usuario sistema</router-link></a>
+          <a class="dropdown-item"><router-link class="nav-link" to="/lis_usu">Usuario</router-link></a>
         </div>
       </li>
 
@@ -39,6 +39,10 @@
           <div class="dropdown-divider"></div>
 
           <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_dia">Diagnostico</router-link></a>
+          
+          <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item"><router-link class="nav-link pr-3" to="/lis_num">Info. N° Prescripción</router-link></a>
 
         </div>
       </li> 
@@ -54,7 +58,7 @@
           usuario: {{user.email}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item">Mi Perfil</a>
+          <router-link class="dropdown-item" to="/edi_per">Mi Perfil</router-link>
           <a class="dropdown-item" @click.prevent = "logout">Cerrar Sesión</a>
         </div>
       </li>
@@ -74,7 +78,7 @@
 
         return  {
 
-        user: null
+        user: {}
             }
         },
         methods: {
