@@ -1,7 +1,10 @@
 <template>
 <div class="container">
 
-    <h2>{{ titulo }}</h2><hr>
+    <h2>{{ titulo }}</h2>
+
+   
+
 
     <form @submit.prevent="agregar">
         <div class="form-group">
@@ -69,13 +72,12 @@
             </div>
 
             <div class="form-group col-md-6">
-              
                 <router-link class="btn btn-outline-success btn-block" to="/home">Regresar</router-link>
-                
             </div>
         </div>
 
     </form>
+
 </div>
 
 </template>
@@ -94,37 +96,57 @@
                 selec: null,
                 selec1: null,
                 selec2: null,
-                user: null,
+                user: {},
                 medica: [],
                 diagnos: [],
                 paciente: [],
                 pre: {
-                }
+                },
+                nume: []
+                
             }
         },
         methods: {
-            agregar() {           
+            
+            agregar() {  
+                    
+                    const numCont1 = this.nume[0].numContador+=1
                     db.collection("prescripcion").add({
                         usuMedico:this.user.uid,
-                        usuPaciente:this.selec.key,
-                        idMedicamento:this.selec1.key,
-                        idDiagnostico:this.selec2.key ,
+                        usuPaciente:this.selec,
+                        idMedicamento:this.selec1,
+                        idDiagnostico:this.selec2,
                         preDosis:this.pre.preDosis,
                         preFecha:new Date(),
                         preDiaTratamiento:this.pre.preDiaTratamiento,
-                        preAdvertencia:this.pre.preAdvertencia,  
-                                        
+                        preAdvertencia:this.pre.preAdvertencia, 
+                        idNumeracion:this.nume[0],
+                        preContador:numCont1                                      
                     })
+                    if (this.nume[0].numFinal == this.nume[0].numContador) {
+
+                        var estado = 'inactivo';
+                        db.collection("numeracion")
+                        .doc(this.nume[0].key)
+                        .update({numEstado: estado})
+                        
+                    }
+
+                    const numCont = numCont1//this.nume[0].numContador
+                    db.collection("numeracion")
+                    .doc(this.nume[0].key)
+                    .update({numContador: numCont})
+
                     .then(() => {
-                        alert("Prescripcion creado correctamente!"); 
+                        alert("Formato  de prescripcion creado correctamente!"); 
                         this.selec = '',
                         this.selec1 = '',
                         this.selec2 = '',
                         this.pre.preDosis = '',
                         this.pre.preDiaTratamiento =  '',
-                        this.pre.preAdvertencia =  ''            
-                    })
-                    .catch((error) => {
+                        this.pre.preAdvertencia =  '',
+                        this.$router.replace('/home')           
+                    }).catch((error) => {
                         console.log(error);
                     });
             }
@@ -142,9 +164,41 @@
             } else {
                this.user = null
             }
-          }),
+          })
+         /*  db.collection('users')
+                    .where('user_id', '==', user.id)
+                    .get() 
+                    .then(querySnapshot => { 
+                        if(querySnapshot.docChanges().length === 0){ 
+                            //Add new user to DB db.collection
+                            ('users').add(user); } 
+                            
+                            }).catch((err) => { console.log(err); 
+                        });*/
+          db.collection("numeracion").where("numEstado", "==", "activo")
+            .get()
+            .then((querySnapshot) => {
+                this.nume = [];
+                 querySnapshot.forEach((doc) => {
+
+                     console.log(doc);
+
+                      this.nume.push({
+                        key: doc.id,
+                        numInicial: doc.data().numInicial,
+                        numFinal: doc.data().numFinal,
+                        numYear: doc.data().numYear,
+                        numEstado: doc.data().numEstado,
+                        numContador: doc.data().numContador,
+                    })     
+                });
+            })
+            .catch((error) => {
+                 console.log("Error getting documents: ", error);
+            });
+
          
-         db.collection("persona").where("tipoRol", "==", "paciente").onSnapshot((snapshotChange) => {
+         db.collection("persona").where("tipoRol.rolNombre", "==", "paciente").onSnapshot((snapshotChange) => {
                 this.paciente = [];
                 snapshotChange.forEach((doc) => {
                     this.paciente.push({
@@ -153,7 +207,7 @@
                         perApellido: doc.data().perApellido
                     })
                 });
-        }),
+         })
 
     
         db.collection('medicamento').onSnapshot((snapshotChange) => {
@@ -165,7 +219,7 @@
                         medConcentracion: doc.data().medConcentracion
                     })
                 });
-        }),
+        })
         db.collection('diagnostico').onSnapshot((snapshotChange) => {
                 this.diagnos = [];
                 snapshotChange.forEach((doc) => {

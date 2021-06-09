@@ -5,6 +5,9 @@ import firebase from 'firebase';
 
 import login from './views/VLogin/login.vue'
 import home from "./views/VHome/home.vue";
+import editar_perfil from "./views/VUsuario/VEditarPerfil.vue";
+import listar_usuario from "./views/VUsuario/VListar.vue";
+import agregar_usuario from "./views/VUsuario/VAgregar.vue";
 import listar_paciente from "./views/VPaciente/VListar.vue";
 import editar_paciente from "./views/VPaciente/VEditar.vue";
 import agregar_paciente from "./views/VPaciente/VAgregar.vue";
@@ -17,6 +20,7 @@ import editar_diagnostico from "./views/VDiagnostico/VEditar.vue";
 import listar_entidad from "./views/VEntidad/VListar.vue";
 import editar_entidad from "./views/VEntidad/VEditar.vue";
 import agregar_prescripcion from "./views/VPrescripcion/VAgregar.vue";
+import list_info_prescripcion from "./views/VNumeracion/VListar.vue";
 
 
 
@@ -33,6 +37,33 @@ const router = new VueRouter ({
     path: "/home",
     name: "home",
     component: home,
+    meta: {
+
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/edi_per",
+    name: "edi_per",
+    component: editar_perfil,
+    meta: {
+
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/agr_usu",
+    name: "agr_usu",
+    component: agregar_usuario,
+    meta: {
+
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/lis_usu",
+    name: "lis_usu",
+    component: listar_usuario,
     meta: {
 
       requiresAuth: true
@@ -141,6 +172,15 @@ const router = new VueRouter ({
     path: "/agr_pre",
     name: "agr_pre",
     component: agregar_prescripcion,
+    meta: {
+
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/lis_num",
+    name: "lis_num",
+    component: list_info_prescripcion,
     meta: {
 
       requiresAuth: true
