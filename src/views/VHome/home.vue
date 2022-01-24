@@ -1,5 +1,7 @@
 <template>
   <div class="home">
-    <h2>HOME</h2>
+    <div class="alert alert-primary" role="alert">
+      <strong>Bienvenido usuario</strong>
+    </div>
   </div>
 </template>
