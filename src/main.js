@@ -4,7 +4,13 @@ import router from "./router";
 import './plugins/fontawesome';
 import "bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import VuePaginate from 'vue-paginate';
+
 import firebase from 'firebase';
+
+
+Vue.use(VuePaginate);
 
 
 

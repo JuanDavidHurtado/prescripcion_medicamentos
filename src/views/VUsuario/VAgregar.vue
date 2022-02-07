@@ -150,6 +150,7 @@
                 v-model="password"
               />
             </td>
+
           </tr>
           <tr>
             <td>
@@ -166,7 +167,11 @@
                 </option>
               </select>
             </td>
+
+            <div v-if="this.variableGlobal == true">
+
             <div>
+
               <td>
                 <label>Especialidad:</label><br />
                 <select :class="$style.input_txt" v-model="selec2">
@@ -178,6 +183,18 @@
                   </option>
                 </select>
               </td>
+
+              <td>
+                <label>Registro Profesional: </label><br />
+                <input
+                  type="text"
+                  :class="$style.input_txt"
+                  placeholder="Digite Registro"
+                  required
+                  v-model="usuCuenta.perRegProfesional"
+                />
+              </td>
+
             </div>
           </tr>
         </tbody>
@@ -205,9 +222,13 @@
 </template>
 
 <script>
+
+import { db, auxFirebaseSession } from "../../firebaseDb";
+
 import { db } from "../../firebaseDb";
 
 import firebase from "firebase";
+
 
 export default {
   data() {
@@ -220,13 +241,25 @@ export default {
       email: "",
       password: "",
       esp: [],
+
+      rol: [],
+      variableGlobal: false
+
       rol: []
+
     };
   },
 
   name: "agr_usu",
   methods: {
     onChange(selec1) {
+
+      if (selec1.rolNombre == "medico") {
+        this.variableGlobal = true;
+        console.log("medico");
+      } else {
+        this.variableGlobal = false;
+
       //console.log(selec1.rolNombre);
       if (selec1.rolNombre == "medico") {
        // var inputValue = document.getElementById("valueInput").value;
@@ -236,21 +269,35 @@ export default {
       } else {
         //document.getElementById(id).style.display = '';
         console.log("no es medico");
+
       }
     },
 
     agr_usu() {
+
+      //Creación de la cuenta con la sesión secundaria
+      //agrego cuenta autenticada con firebase
+      auxFirebaseSession
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(userCredential => {
+
       //agrego cuenta autenticada con firebase
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
+
           //agrego el usuario persona
 
           if (this.selec2 != null) {
             db.collection("persona")
               .add({
+
+                idUsuario: userCredential.user.uid,
+
                 //   idUsuario:this.uid,
+
                 perNombre: this.usuCuenta.perNombre,
                 perApellido: this.usuCuenta.perApellido,
                 perTipDocumento: this.selec,
@@ -261,7 +308,12 @@ export default {
                 perMunicipio: this.usuCuenta.perMunicipio,
                 perEntidad: "IPS NUEVA POPAYAN",
                 tipoRol: this.selec1.rolNombre,
+
+                idEspecialidad: this.selec2,
+                perRegProfesional: this.usuCuenta.perRegProfesional
+
                 idEspecialidad: this.selec2
+
               })
               .then(() => {
                 alert("Cuenta de usuario creado correctamente!");
@@ -273,6 +325,9 @@ export default {
                 this.usuCuenta.perDepartamento = "";
                 this.usuCuenta.perApellido = "";
                 this.usuCuenta.perMunicipio = "";
+
+                this.usuCuenta.perRegProfesional = "";
+
                 this.email = "";
                 this.password = "";
                 this.selec1 = "";
@@ -283,7 +338,11 @@ export default {
           } else {
             db.collection("persona")
               .add({
+
+                idUsuario: userCredential.user.uid,
+
                 //   idUsuario:this.uid,
+
                 perNombre: this.usuCuenta.perNombre,
                 perApellido: this.usuCuenta.perApellido,
                 perTipDocumento: this.selec,
@@ -293,7 +352,12 @@ export default {
                 perDepartamento: this.usuCuenta.perDepartamento,
                 perMunicipio: this.usuCuenta.perMunicipio,
                 tipoRol: this.selec1.rolNombre,
+
+                idEspecialidad: this.selec2,
+                perRegProfesional: this.usuCuenta.perRegProfesional
+
                 idEspecialidad: this.selec2
+
               })
               .then(() => {
                 alert("Cuenta de usuario creado correctamente!");
@@ -305,6 +369,9 @@ export default {
                 this.usuCuenta.perDepartamento = "";
                 this.usuCuenta.perApellido = "";
                 this.usuCuenta.perMunicipio = "";
+
+                this.usuCuenta.perRegProfesional = "";
+
                 this.email = "";
                 this.password = "";
                 this.selec1 = "";
@@ -317,6 +384,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
+
+
+      //Cierro la nueva sesión de la cuenta auxiliar
+      auxFirebaseSession.auth().signOut();
+
     }
   },
   created() {

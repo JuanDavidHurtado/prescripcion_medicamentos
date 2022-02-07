@@ -2,12 +2,12 @@ import Vue from "vue";
 import VueRouter from 'vue-router'
 import firebase from 'firebase';
 
-
 import login from './views/VLogin/login.vue'
 import home from "./views/VHome/home.vue";
 import editar_perfil from "./views/VUsuario/VEditarPerfil.vue";
 import listar_usuario from "./views/VUsuario/VListar.vue";
 import agregar_usuario from "./views/VUsuario/VAgregar.vue";
+import editar_usuario from "./views/VUsuario/VEditar.vue";
 import listar_paciente from "./views/VPaciente/VListar.vue";
 import editar_paciente from "./views/VPaciente/VEditar.vue";
 import agregar_paciente from "./views/VPaciente/VAgregar.vue";
@@ -195,6 +195,16 @@ const router = new VueRouter({
 
         requiresAuth: true
       }
+    },
+    {
+      path: "/edi_usu",
+      name: "edi_usu",
+      component: editar_usuario,
+      meta: {
+
+        requiresAuth: true
+      }
+
     }
 
 

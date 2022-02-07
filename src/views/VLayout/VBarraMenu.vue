@@ -164,9 +164,17 @@ object-fit: contain;
               <font-awesome-icon icon="user" /> usuario: {{ user.email }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+              <router-link class="dropdown-item" 
+                :to="{ name: 'edi_per', params: { id: user.uid } }"
+                ><font-awesome-icon icon="user" /> Mi Perfil
+              </router-link>
+              <a class="dropdown-item" @click.prevent="changePassword">Cambiar contraseña</a>
+
               <router-link class="dropdown-item" to="/edi_per"
                 ><font-awesome-icon icon="user" /> Mi Perfil
               </router-link>
+
               <a class="dropdown-item" @click.prevent="logout">Cerrar Sesión</a>
             </div>
           </li>
@@ -191,6 +199,26 @@ export default {
     };
   },
   methods: {
+
+    changePassword () { 
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user.email) {
+          firebase
+            .auth()
+            .sendPasswordResetEmail(user.email)
+            .then(() => {
+              alert('Se envió un correo para restablecer la contraseña. Revise la bandeja de entrada de ' 
+              + user.email);
+            })
+            .catch((error) => {
+              console.log('Restablecimiento de contraseña error.' + error.message);
+            });
+        } else {
+          console.log('Restablecimiento de contraseña error.');
+        }
+      });
+    },
+
     logout() {
       firebase
         .auth()

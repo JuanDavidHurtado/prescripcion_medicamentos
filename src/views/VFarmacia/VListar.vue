@@ -29,7 +29,11 @@
     <hr />
 
     <button type="button" class="btn btn-primary" style="background-color: #7752CA;"  @click="toggleModal">
+
+      <font-awesome-icon icon="plus" /> Agregar
+
       <font-awesome-icon icon="plus" /> Agregar Farmacia
+
     </button>
 
     <div
@@ -106,7 +110,12 @@
 
     <div class="col-md-12">
       <br />
+
+      <paginate ref="paginator" name="far" :list="far" :per="4">
+      <table class="table table-bordered table-sm">
+
       <table class="table table-bordered">
+
         <thead>
           <tr :class="$style.th">
             <th>Nit</th>
@@ -115,7 +124,11 @@
           </tr>
         </thead>
         <tbody>
+
+          <tr v-for="f in paginated('far')" :key="f.key" :class="$style.th">
+
           <tr v-for="f in far" :key="f.key" :class="$style.th">
+
             <td>{{ f.farNit }}</td>
             <td>{{ f.farNombre }}</td>
             <td>
@@ -135,6 +148,17 @@
           </tr>
         </tbody>
       </table>
+
+      </paginate>
+       <paginate-links 
+        for="far"
+        :show-step-links="true"
+        :simple="{
+          next: 'Siguiente',
+          prev: 'Anterior'
+        }"
+      ></paginate-links>
+
     </div>
   </div>
 </template>
@@ -146,6 +170,9 @@ export default {
   data() {
     return {
       titulo: "LISTA FARMACIA",
+
+      paginate: ["far"],
+
       farma: {},
       far: [],
       active: false,

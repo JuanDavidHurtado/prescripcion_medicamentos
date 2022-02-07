@@ -20,7 +20,10 @@
 }
 
 .th {
+
+  font-size: small;
   font-size: small
+
 }
 </style>
 
@@ -45,7 +48,12 @@
       <table class="table table-bordered">
         <thead>
           <tr :class="$style.th">
+
+            <th>Registro</th>
+            <th>Atendio</th>
+
             <th>Documento</th>
+
             <th>Paciente</th>
             <th>Medicamento</th>
             <th>Concentracion</th>
@@ -56,9 +64,30 @@
         </thead>
         <tbody>
           <tr v-for="p in filtrarUsuario" :key="p.key" :class="$style.th">
+
+            <td>{{ p.preFecha }}</td>
+            <td>
+              {{ "Doc: " + p.usuMedico.perDocumento }}<br />
+              {{
+                "Profesional: " +
+                  p.usuMedico.perNombre +
+                  " " +
+                  p.usuMedico.perApellido
+              }}
+            </td>
+            <td>
+              {{ "Doc: " + p.usuPaciente.perDocumento }}<br />
+              {{
+                "Paciente: " +
+                  p.usuPaciente.perNombre +
+                  " " +
+                  p.usuPaciente.perApellido
+              }}
+
             <td>{{ p.usuPaciente.perDocumento }}</td>
             <td>
               {{ p.usuPaciente.perNombre + " " + p.usuPaciente.perApellido }}
+
             </td>
             <td>{{ p.idMedicamento.medNombre }}</td>
             <td>{{ p.idMedicamento.medConcentracion }}</td>
@@ -144,8 +173,15 @@ export default {
           //this.pres = doc.data();
           this.prescripcion.push({
             key: doc.id,
+
+            preFecha: doc.data().preFecha,
             preAdvertencia: doc.data().preAdvertencia,
             usuPaciente: doc.data().usuPaciente,
+            usuMedico: doc.data().usuMedico,
+
+            preAdvertencia: doc.data().preAdvertencia,
+            usuPaciente: doc.data().usuPaciente,
+
             idMedicamento: doc.data().idMedicamento,
             preEstado: doc.data().preEstado
           });

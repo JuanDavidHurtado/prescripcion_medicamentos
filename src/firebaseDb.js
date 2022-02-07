@@ -17,4 +17,7 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+//La siguiente es una sesión secundaria para la creación de usuarios del sistema
+export const auxFirebaseSession  = firebase.initializeApp(firebaseConfig, 'Secondary');
+
 export const db = firebaseApp.firestore();

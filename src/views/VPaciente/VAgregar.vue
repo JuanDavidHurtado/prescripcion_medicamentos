@@ -134,6 +134,18 @@
           </tr>
           <tr>
             <td>
+
+              <label>Eps</label><br />
+              <input
+                type="text"
+                required
+                :class="$style.input_txt"
+                placeholder="Digite Eps"
+                v-model="pac.perEps"
+              />
+            </td>
+            <td>
+
               <label>Departamento</label><br />
               <!--select
                 :class="$style.input_txt"
@@ -232,6 +244,9 @@ export default {
           perTelefono: this.pac.perTelefono,
           perCorreo: this.pac.perCorreo,
           perDepartamento: this.pac.perDepartamento,
+
+          perEps: this.pac.perEps,
+
           /*perDepartamento: this.selec_departamento,
           perMunicipio: this.selec_municipio,*/
           perMunicipio: this.pac.perMunicipio,
@@ -241,7 +256,11 @@ export default {
         })
         .then(() => {
           alert("Paciente creado correctamente!");
+
+            (this.pac.perNombre = ""),
+
           (this.pac.perNombre = ""),
+
             (this.pac.perApellido = ""),
             (this.selec = "null"),
             (this.selec_sexo = "null"),
@@ -251,15 +270,26 @@ export default {
             (this.selec_municipio = "null"),*/
             (this.pac.perFecNacimiento = ""),
             (this.pac.perTelefono = ""),
+
+            (this.pac.perCorreo = ""),
+            (this.pac.perDepartamento = ""),
+            (this.pac.perMunicipio = ""),
+             (this.pac.perEps = "")
+
             (this.pac.perCorreo = "");
             (this.pac.perDepartamento = ""),
             (this.pac.perMunicipio = "");
+
         })
         .catch(error => {
           console.log(error);
         });
     }
+
+  }
+
   },
+
   /*created() {
     db.collection("departamento").onSnapshot(snapshotChange => {
       this.depa = [];
