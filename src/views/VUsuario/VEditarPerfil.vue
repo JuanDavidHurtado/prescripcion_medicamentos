@@ -20,6 +20,7 @@
 }
 </style>
 <template>
+
   <div class="container" :class="$style.form">
     <h4>
       {{ titulo }}
@@ -115,10 +116,16 @@
         </div>
       </div>
     </form>
+
+  <div class="container">
+    <h4>{{ titulo }}</h4>
+    <hr />
+
   </div>
 </template>
 
 <script>
+
 import { db } from "../../firebaseDb";
 
 export default {
@@ -165,3 +172,13 @@ export default {
   }
 };
 </script>
+
+export default {
+  data() {
+    return {
+      titulo: "EDITAR MI PERFIL",
+    };
+  },
+};
+</script>
+

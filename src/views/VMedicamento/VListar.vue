@@ -30,7 +30,11 @@
     <hr />
 
     <button type="button" class="btn btn-primary" style="background-color: #7752CA;" @click="toggleModal">
+
       <font-awesome-icon icon="plus" /> Agregar
+
+      <font-awesome-icon icon="plus" /> Agregar Medicamento
+
     </button>
 
     <div
@@ -132,8 +136,12 @@
 
     <div class="col-md-12">
       <br />
+
        <paginate ref="paginator" name="med" :list="med" :per="4">
       <table class="table table-bordered table-sm">
+
+      <table class="table table-bordered">
+
         <thead>
           <tr :class="$style.th">
             <th>Còdigo</th>
@@ -144,7 +152,11 @@
           </tr>
         </thead>
         <tbody>
+
           <tr v-for="m in paginated('med')" :key="m.key" :class="$style.th"> 
+
+          <tr v-for="m in med" :key="m.key" :class="$style.th"> 
+
             <td>{{ m.medCodigo }}</td>
             <td>{{ m.medNombre }}</td>
             <td>{{ m.medConcentracion }}</td>
@@ -167,6 +179,7 @@
           </tr>
         </tbody>
       </table>
+
        </paginate>
        <paginate-links 
         for="med"
@@ -176,6 +189,7 @@
           prev: 'Anterior'
         }"
       ></paginate-links>
+
     </div>
   </div>
 </template>
@@ -187,7 +201,9 @@ export default {
   data() {
     return {
       titulo: "LISTA MEDICAMENTO",
+
       paginate: ["med"],
+
       med: [],
       active: false,
       show: false,

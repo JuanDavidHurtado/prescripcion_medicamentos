@@ -204,6 +204,7 @@ const router = new VueRouter({
 
         requiresAuth: true
       }
+
     }
 
 

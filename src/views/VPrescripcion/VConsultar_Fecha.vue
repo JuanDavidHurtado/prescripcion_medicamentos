@@ -67,7 +67,11 @@
         <thead>
           <tr :class="$style.th">
             <th>Registro</th>
+
             <th>Atendio</th>
+
+            <th>Documento</th>
+
             <th>Paciente</th>
             <th>Medicamento</th>
             <th>Dosis</th>
@@ -79,6 +83,7 @@
         <tbody>
           <tr v-for="p in prescri" :key="p.key" :class="$style.th">
             <td>{{ p.preFecha }}</td>
+
             <td>
               {{ "Doc: " + p.usuMedico.perDocumento }}<br />
               {{
@@ -96,6 +101,11 @@
                   " " +
                   p.usuPaciente.perApellido
               }}
+
+            <td>{{ p.usuPaciente.perDocumento }}</td>
+            <td>
+              {{ p.usuPaciente.perNombre + " " + p.usuPaciente.perApellido }}
+
             </td>
             <td>
               {{ p.idMedicamento.medNombre }} <br />
@@ -137,12 +147,22 @@ export default {
         .onSnapshot(snapshotChange => {
           this.prescri = [];
           snapshotChange.forEach(doc => {
+
             //console.log(this.prescri);
 
             this.prescri.push({
               key: doc.id,
               preAdvertencia: doc.data().preAdvertencia,
               usuMedico: doc.data().usuMedico,
+
+              //console.log(this.prescri);
+
+            this.prescri.push({
+
+             
+              key: doc.id,
+              preAdvertencia: doc.data().preAdvertencia,
+
               usuPaciente: doc.data().usuPaciente,
               idMedicamento: doc.data().idMedicamento,
               idDiagnostico: doc.data().idDiagnostico,
@@ -152,12 +172,23 @@ export default {
               preFecha: doc.data().preFecha,
               f1: this.pre.fecha1,
               f2: this.pre.fecha2
+
             });
           });
           if (this.prescri == 0) {
             this.pre.fecha1 = "";
             this.pre.fecha2 = "";
             alert("No hay prescripciones realizadas en las fechas indicadas.");
+
+
+            });
+          });
+          if(this.prescri == 0){
+                 this.pre.fecha1 = "";
+                 this.pre.fecha2 = "";
+                 alert("No hay prescripciones realizadas en las fechas indicadas.")
+
+
           }
           this.pre.fecha1 = "";
           this.pre.fecha2 = "";

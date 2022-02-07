@@ -2,11 +2,19 @@
   <div class="container">
     <div class="row">
       <div class="col-6" style="padding: 5% 0 0">
+
         <!--h4 style="color: #7752CA;">
           Prescripción de Medicamentos de Control Especial
         </h4><hr style="background-color: #7752CA;"-->
         <br><img :src="image"/>
         <!--em style="color: #7752CA;">
+
+        <h4 style="color: #7752CA;">
+          Prescripción de Medicamentos de Control Especial
+        </h4>
+        <hr />
+        <em style="color: #7752CA;">
+
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum iste
           quae cupiditate autem? Quis perspiciatis dolorem a quod laudantium
           animi ea maxime quos mollitia, praesentium minus doloribus asperiores
@@ -21,7 +29,11 @@
           deserunt tempore nemo saepe sint voluptatibus necessitatibus eius
           molestias magnam, reprehenderit, sapiente quis voluptatem dignissimos?
           Sit culpa provident molestiae veritatis.
+
         </em-->
+
+        </em>
+
       </div>
       <div class="col-1"></div>
       <div class="col-5">
@@ -89,6 +101,7 @@
                   >
                     Ingresar
                   </button>
+
                   <button
                     type="button"
                     class="btn btn-link"
@@ -96,6 +109,7 @@
                   >
                     Recuperar contraseña
                   </button>
+
                 </div>
               </div>
             </form>
@@ -107,7 +121,11 @@
 </template>
 <script>
 import firebase from "firebase";
+
 import image from "../../assets/mce.png"
+
+import image from "../../assets/logo-login.png";
+
 
 export default {
   data() {
@@ -121,6 +139,7 @@ export default {
   name: "login",
 
   methods: {
+
     resetPassword () { 
       this.error = "";
 
@@ -138,6 +157,7 @@ export default {
         this.error = "Necesita email para restablecer contraseña!";
       }
     },
+
     login() {
       this.error = "";
 
@@ -150,6 +170,7 @@ export default {
           })
           .catch(err => {
             this.error = err.message;
+
             if (err.code == 'auth/user-not-found'){
 
               this.email = "";
@@ -159,6 +180,7 @@ export default {
               this.password = "";
               this.error = "Contraseña no coincide con este usuario. Reintente o recupere su contraseña.";
             }
+
           });
       } else {
         this.error = "Todos los campos son requeridos";

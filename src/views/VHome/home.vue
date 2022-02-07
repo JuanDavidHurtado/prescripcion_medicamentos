@@ -3,6 +3,7 @@
     <div class="alert alert-primary" role="alert">
       <strong>Bienvenido usuario</strong>
     </div>
+
     <br />
     <div v-if="rol_usuario.tipoRol == 'administrador'">
       <div class="form-row">
@@ -194,6 +195,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 

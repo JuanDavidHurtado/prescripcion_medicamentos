@@ -35,6 +35,8 @@
       @click="toggleModal"
     >
       <font-awesome-icon icon="plus" /> Agregar
+
+      <font-awesome-icon icon="plus" /> Agregar Diagnostico
     </button>
 
     <div
@@ -112,8 +114,12 @@
 
     <div class="col-md-12">
       <br />
+
       <paginate ref="paginator" name="dia" :list="dia" :per="4">
       <table class="table table-bordered table-sm">
+
+      <table class="table table-bordered">
+
         <thead>
           <tr :class="$style.th">
             <th>Còdigo</th>
@@ -122,7 +128,11 @@
           </tr>
         </thead>
         <tbody>
+
           <tr v-for="d in paginated('dia')" :key="d.key" :class="$style.th">
+
+          <tr v-for="d in dia" :key="d.key" :class="$style.th">
+
             <td>{{ d.diaCodigo }}</td>
             <td>{{ d.diaNombre }}</td>
             <td>
@@ -143,6 +153,7 @@
           </tr>
         </tbody>
       </table>
+
          </paginate>
        <paginate-links 
         for="dia"
@@ -152,6 +163,7 @@
           prev: 'Anterior'
         }"
       ></paginate-links>
+
     </div>
   </div>
 </template>

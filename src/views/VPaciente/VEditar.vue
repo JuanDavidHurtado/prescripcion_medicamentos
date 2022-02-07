@@ -60,7 +60,11 @@
                 v-model="pac.perTipDocumento"
               />
             </td>
+
             <td>
+
+              <td>
+
               <label>Documento:</label><br />
 
               <input
@@ -74,6 +78,7 @@
             <td>
               <label>Sexo:</label><br />
               <div v-if="pac.perSexo == 'Masculino'">
+
                 <select
                   :class="$style.input_txt"
                   v-model="pac.perSexo"
@@ -92,6 +97,18 @@
                   <option>Masculino</option>
                   <option value="Femenino" selected>Femenino</option>
                 </select>
+
+              <select :class="$style.input_txt" v-model="pac.perSexo" required>
+                <option value="Masculino" selected>Masculino</option>
+                <option>Femenino</option>
+              </select>
+              </div>
+              <div v-else>
+                <select :class="$style.input_txt" v-model="pac.perSexo" required>
+                <option >Masculino</option>
+                <option value="Femenino" selected>Femenino</option>
+              </select>
+
               </div>
             </td>
           </tr>
@@ -126,6 +143,7 @@
                 v-model="pac.perCorreo"
               />
             </td>
+
             <td>
               <label>Regimen:</label><br />
               <div v-if="pac.perRegimen == 'Contributivo'">
@@ -160,11 +178,36 @@
                   <option>Subsidiado</option>
                   <option value="Particular" selected>Particular</option>
                 </select>
+
+             <td>
+              <label>Regimen:</label><br />
+              <div v-if="pac.perRegimen == 'Contributivo'">
+              <select :class="$style.input_txt" v-model="pac.perRegimen" required>
+                <option value="Contributivo" selected>Contributivo</option>
+                <option>Subsidiado</option>
+                <option>Particular</option>
+              </select>
+              </div>
+              <div v-else-if="pac.perRegimen == 'Subsidiado'">
+                <select :class="$style.input_txt" v-model="pac.perRegimen" required>
+                <option >Contributivo</option>
+                <option value="Subsidiado" selected>Subsidiado</option>
+                <option >Particular</option>
+              </select>
+              </div>
+              <div v-else-if="pac.perRegimen == 'Particular'">
+                <select :class="$style.input_txt" v-model="pac.perRegimen" required>
+                <option >Contributivo</option>
+                <option >Subsidiado</option>
+                <option value="Particular" selected>Particular</option>
+              </select>
+
               </div>
             </td>
           </tr>
           <tr>
             <td>
+
               <label>Eps</label><br />
               <input
                 type="text"
@@ -175,6 +218,7 @@
               />
             </td>
             <td>
+
               <label>Departamento</label><br />
               <input
                 type="text"
@@ -201,12 +245,16 @@
 
       <div class="form-row">
         <div class="form-group col-md-2">
+
           <button
             class="btn btn-primary btn-block"
             style="background-color: #7752CA;"
           >
             actualizar
           </button>
+
+          <button class="btn btn-primary btn-block" style="background-color: #7752CA;">actualizar</button>
+
         </div>
 
         <div class="form-group col-md-2">
@@ -220,7 +268,13 @@
 </template>
 
 <script>
+
 import { db } from "../../firebaseDb";
+
+
+
+import { db } from "../../firebaseDb";
+
 
 export default {
   data() {
