@@ -3,9 +3,9 @@ import firebase from 'firebase';
 
 const firebaseConfig = {
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
     apiKey: "AIzaSyAEBMx_ABx7UIKDWZPNiyZqUDTbIFU1wIQ",
     authDomain: "pre-med-ffbb1.firebaseapp.com",
     projectId: "pre-med-ffbb1",
@@ -16,5 +16,8 @@ const firebaseConfig = {
 }
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+//La siguiente es una sesión secundaria para la creación de usuarios del sistema
+export const auxFirebaseSession  = firebase.initializeApp(firebaseConfig, 'Secondary');
 
 export const db = firebaseApp.firestore();
